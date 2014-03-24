@@ -1,0 +1,413 @@
+\documentclass [11pt]{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{epsfig} 
+\usepackage{enumerate}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+
+
+
+   \textwidth      15cm
+   \textheight     23cm
+   \oddsidemargin 0.5cm
+   \topmargin    -0.5cm
+   \evensidemargin\oddsidemargin
+
+ \newcommand{\nop}[1]{}
+
+
+   \pagestyle{plain}
+   \bibliographystyle{plain}
+
+
+\title{Formale Methoden der Informatik \\
+Block 1: Computability and Complexity }
+\author{Exercises 1-10 \\
+Submission deadline: 21.04.2014}
+\date{SS 2014}
+
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem{example}[theorem]{Example}
+  \newtheorem{remark}[theorem]{Remark}
+  \newtheorem{exercise}[theorem]{Exercise}
+
+  \newcommand{\ra}{\rightarrow}
+  \newcommand{\Ra}{\Rightarrow}
+  \newcommand{\La}{\Leftarrow}
+  \newcommand{\la}{\leftarrow}
+  \newcommand{\LR}{\Leftrightarrow}
+
+  \renewcommand{\phi}{\varphi}
+  \renewcommand{\theta}{\vartheta}
+
+
+\newcommand{\ccfont}[1]{\protect\mathsf{#1}}
+\newcommand{\NP}{\ccfont{NP}}
+
+\newcommand{\NN}{\textbf{N}}
+\newcommand{\IN}{\textbf{Z}}
+\newcommand{\bigO}{\mathrm{O}}
+\newcommand{\bigOmega}{\Omega}
+\newcommand{\bigTheta}{\Theta}
+\newcommand{\REACHABILITY}{\mbox{\bf REACHABILITY}}
+\newcommand{\MAXFLOW}{\mbox{\bf MAX FLOW}}
+\newcommand{\MAXFLOWD}{\mbox{\bf MAX FLOW(D)}}
+\newcommand{\MAXFLOWSUB}{\mbox{\bf MAX FLOW SUBOPTIMAL}}
+\newcommand{\MATCHING}{\mbox{\bf BIPARTITE MATCHING}}
+\newcommand{\TSP}{\mbox{\bf TSP}}
+\newcommand{\TSPD}{\mbox{\bf TSP(D)}}
+
+\newcommand{\ThreeCol}{\mbox{\bf 3-COLORABILITY}}
+\newcommand{\TwoCol}{\mbox{\bf 2-COLORABILITY}}
+\newcommand{\kCol}{\mbox{\bf k-COLORABILITY}}
+\newcommand{\HamPath}{\mbox{\bf HAMILTON-PATH}}
+\newcommand{\HamCycle}{\mbox{\bf HAMILTON-CYCLE}}
+
+\newcommand{\ONESAT}{\mbox{\bf 1-IN-3-SAT}}
+\newcommand{\MONONESAT}{\mbox{\bf MONOTONE 1-IN-3-SAT}}
+\newcommand{\kSAT}{\mbox{\bf k-SAT}}
+\newcommand{\NAESAT}{\mbox{\bf NAESAT}}
+\newcommand{\CLIQUE}{\textbf{CLIQUE}\xspace} 
+\newcommand{\VC}{\textbf{VERTEX COVER}\xspace}
+
+\newcommand{\VerCov}{\mbox{\bf Vertex Cover}\xspace}
+\newcommand{\SetCov}{\mbox{\bf Set Cover}\xspace}
+\newcommand{\EmplSched}{\mbox{\bf Employee Scheduling}\xspace}
+
+
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+%%% useful macros for Turing machines:
+\newcommand{\blank}{\sqcup}
+\newcommand{\ssym}{\triangleright}
+\newcommand{\esym}{\triangleleft}
+\newcommand{\halt}{\mbox{h}}
+\newcommand{\yess}{\mbox{``yes''}}
+\newcommand{\nos}{\mbox{``no''}}
+\newcommand{\lmove}{\leftarrow}
+\newcommand{\rmove}{\rightarrow}
+\newcommand{\stay}{-}
+\newcommand{\diverge}{\nearrow}
+\newcommand{\yields}[1]{\stackrel{#1}{\rightarrow}}
+
+\newcommand{\HALTING}{\mbox{\bf HALTING}}
+
+\newcommand{\true}{{\it true}}
+\newcommand{\false}{{\it false}}
+
+
+%\newcommand{\samplesolution}[1]{\noindent {\bf Sample solution.}  #1}
+\newcommand{\solution}[1]{\noindent {\bf Solution.}  #1}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{exercise}
+  Prove that the following problem is undecidable:
+
+  \begin{center}
+    \fbox{
+      \begin{minipage}[c]{.9\linewidth}
+        \textbf{DOUBLE}
+
+        \medskip INSTANCE: A pair $(\Pi,I)$, where $I$ is a string and $\Pi$
+        is a program that takes one string as input and outputs a string.
+        \\
+        QUESTION: Does the program $\Pi$ on the string $I$ as input return as
+        output the string $I\,{+}\,I$? Here $+$ is the operator for string
+        concatenation.
+      \end{minipage}
+    }
+  \end{center}
+  Prove the undecidability by providing a reduction from the \textbf{HALTING}
+  problem to \textbf{DOUBLE}, and arguing that your reduction is correct.
+\end{exercise}
+
+
+\solution{The proof proceeds by reduction from HALTING to DOUBLE.\\
+Let$(\Pi,I)$ be an arbitrary instance of the \textbf{HALTING} problem, i.e., $\Pi$ is a program that takes one string and I is an Input for $\Pi$.
+From this, we construct an instance $(\Pi',I)$ of \textbf{DOUBLE} by building $(\Pi')$ as follows:\\}
+
+\begin{lstlisting}[label=haltingtodouble,caption=$\Pi'$,mathescape, numbers=left, numberstyle=\tiny]
+String $\Pi'$ (String S) {
+  call $\Pi$(S);
+  return S+S;
+}
+\end{lstlisting}
+It remains to show that the following equivalence holds:\\
+$\Pi$ halts on S $\Leftrightarrow$ $\Pi'$ returns S+S\\
+$\Rightarrow$\\
+Assume $\Pi$ halts on S. This means line three is reached and S+S is returned.\\
+$\Leftarrow$\\
+Assume $\Pi'$ returns S+S. This implies, that the program must have passed line two.
+This implies that $\Pi$ halts on S because it means running $\Pi$ on I.
+$\square$
+
+
+
+
+
+
+
+\begin{exercise}
+ Prove that \textbf{DOUBLE} is semi-decidable. To this end, provide a semi-decision procedure and justify your solution.
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  Give a formal proof that \textbf{SUBSET SUM} is in $\NP$, i.e. define a
+  certificate relation and discuss that it is polynomially balanced and
+  polynomial-time decidable.
+  
+\medskip
+
+\noindent \textbf{SUBSET SUM:} \\
+INSTANCE: A finite set of integer numbers $S=\{a_1, a_2, \ldots, a_n\}$ and an integer number $t$. \\
+QUESTION: Does there exist a subset $S'\subseteq S$, s.t.\ the sum of the elements in $S'$  is equal to $t$, i.e. $\big(\sum_{a_i \in S'} a_i\big) = t$?
+  
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:partition}
+  Formally prove that \textbf{PARTITION} is $\NP$-complete. For this you may use
+  the fact that \textbf{SUBSET SUM} is $\NP$-complete.   
+
+\medskip     
+   
+\noindent \textbf{PARTITION:} \\
+INSTANCE: A finite set of $n$ positive integers $P=\{p_1, p_2, \ldots, p_n\}$. \\
+QUESTION: Can the set $P$ be partitioned into two subsets $P_1, P_2$ such that the sum of the numbers in $P_1$ equals the sum of the numbers in $P_2$? 
+  
+
+\end{exercise}
+
+
+
+%\solution{ Your solution here.}
+\newpage
+
+\begin{exercise}
+    Provide a reduction from \textbf{VERTEX COVER} to \textbf{SET COVER}. Additionally, prove the ``$\Rightarrow$'' direction in the proof of correctness of the reduction,  i.e.  prove the following statement: if
+    a \textbf{VERTEX COVER} instance is a yes instance then the created \textbf{SET COVER} instance is also a yes instance. 
+  
+  
+  
+  \medskip     
+   
+    \noindent \textbf{VERTEX COVER:} \\
+INSTANCE: An undirected graph $G=(V,E)$ and integer $k$. \\
+QUESTION: Does there exist a vertex cover $N$ of size $ \leq k$?
+     i.e. $N \subseteq V$, s.t. for all $[i, j ] \in  E$, either $i \in N$ or $j \in N$? 
+    
+
+  \medskip     
+  
+\noindent \textbf{SET COVER:} \\
+INSTANCE: A finite set $X$ of elements, a collection of $n$ subsets $S_i \subseteq X$, such that every element of $X$ belongs to at least one subset $S_i$, and an integer $m$. 
+\\
+QUESTION: Does there exist      a collection $C$ of at most $m$ of these subsets, such that the members of $C$ cover all elements of $X$? 
+i.e. $\bigcup_{S \in C} S = X$. 
+\\[1.1ex]
+\textit{Example:} The following \SetCov instance: $X=\{1,2,3,4,5\}, S_1=\{1,2,3\}, S_2=\{3,4\}$, $S_3=\{1,2,5\}, S_4=\{4,5\}$ and $m=2$, is a yes instance, because there exists a collection $C$ with two subsets that cover all elements of $X$: $C=\{S_1, S_4\}$.
+    
+
+\end{exercise}
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:Scheduling}
+  
+  Provide a reduction from a simplified \textbf{EMPLOYEE SCHEDULING}  problem to \textbf{SAT}. 
+  
+ 
+  \medskip     
+  
+  
+\noindent \textbf{EMPLOYEE SCHEDULING:}     
+
+\noindent
+INSTANCE:
+\begin{itemize}
+\item {Number of employees: $n$.}
+\item {Set $A = \{D,A,N,-\}$ where $D =\ $"day shift", $A =\ $"afternoon shift", $N =\ $"night shift", and $- =\ $"day-off". }
+\item {$w$: length of schedule. Suppose that $w=7$.}
+\item {Temporal requirements: The requirement matrix $R$ $(3\times 7)$, where each element $r_{i,j}$ of the requirement matrix $R$ shows the required number of employees for shift $i$ during day $j$.}
+
+
+
+
+\item {Constraints: 
+
+\begin{itemize}
+\item{Sequences of shifts not permitted to be assigned to employees. Suppose that these sequences are not permitted: $(N\ D)$, $(A\ D)$, and  $(N\ A)$. For example, the sequence $(N\ D)$ (Night Day) indicates that after working in the night shift, it is not allowed to work the next day in the day shift. }
+
+\item{Maximum and minimum length of blocks of workdays: 
+${MAXW}$, ${MINW}$. A Work block is a sequence consisting only from the working shifts (without day-off in beetwen). Suppose that $MAXW=5$ and $MINW=2$.}
+\end{itemize}}
+\end{itemize}
+
+\noindent
+QUESTION: Find a schedule (assignment of shifts to employees) that satisfies the requirement matrix, and the two given constraints. 
+
+\medskip
+\noindent
+A schedule is represented by an $n\times w$ matrix $S\in A^{nw}$. Each element $s_{i,j}$ of matrix $S$ corresponds to one shift. Element $s_{i,j}$ shows on which shift employee $i$ works during day $j$ or whether the employee has day-off.
+
+ 
+\medskip 
+\noindent
+EXAMPLE: Suppose that we are given an instance of \textbf{EMPLOYEE SCHEDULING} with $n=9$ and the following requirement matrix:
+
+\[
+R_{3,7} =
+ \begin{pmatrix}
+  2 & 2 & 2 & 2 & 2 & 2 & 2 \\
+  2 & 2 & 2 & 2 & 2 & 2 & 2 \\
+  2 & 2 & 2 & 2 & 2 & 2 & 2
+  
+ \end{pmatrix}
+\]
+
+
+\noindent In Table~\ref{typicalschedule} an employee schedule is presented that satisfies the requirement matrix, and the two given constraints in the problem definition. This schedule describes explicitly the working schedule of 9 employees during one week. The first employee works from Monday until Friday in a day shift (D) and during Saturday and Sunday has days-off. The second employee has days-off on Monday and Tuesday and works in a day shift during the rest of the week. Further, the last employee works from Monday until Wednesday in a night shift (N), on Thursday and Friday has days-off, and on Saturday and Sunday works in the day shift. Each row of this table represents the weekly schedule of one employee.      
+
+\begin{table}[ht]
+\renewcommand{\arraystretch}{1.2}
+\caption{A typical week schedule for 9 employees }\label{typicalschedule}
+\begin{center}
+\begin{tabular}{||c|c|c|c|c|c|c|c||}  \hline
+Emp./day & Mon & Tue & Wed & Thu & Fri & Sat &Sun \\ \hline \hline
+1 & D & D & D & D & D & - & - \\ \hline 2 & - & - & D & D & D & D & D \\
+\hline 3 & - & - & - & N & N & N & N \\ \hline 4 & D & D & - & - & A & A & A \\
+\hline 5 & A & A & A & A & - & - & - \\ \hline 6 & N & N & N & N & N & - & - \\
+\hline 7 & - & - & A & A & A & A & A \\ \hline 8 & A & A & - & - & - & N & N \\
+\hline 9 & N & N & N & - & - & D & D \\ \hline
+\end{tabular}
+\end{center}
+\end{table} 
+ 
+ 
+ 
+\end{exercise}
+
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+
+  \label{ex:Scheduling2}
+
+  Give a proof sketch of the correctness of your reduction in the previous exercise. Does this reduction imply that \textbf{EMPLOYEE SCHEDULING} is an $\NP$-complete problem? Argue your answer.  
+   
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+
+\begin{exercise}
+  \label{ex:CO-NP}
+Fomally prove that logical entailment in propositional logic is $co-\NP$-complete. 
+ 
+\medskip   
+\noindent 
+\textbf{ENTAILMENT ( $\models$):} \\
+\noindent 
+INSTANCE: Propositional logic sentences $\alpha$ and $\beta$. 
+
+\noindent 
+QUESTION: Does the sentence $\alpha$ entails the sentence $\beta$  ($\alpha \models \beta$)? 
+
+\medskip
+
+\noindent $\alpha \models \beta$ if and only if, in every truth assignment in which $\alpha$ is true, $\beta$ is also true.    
+
+  
+  
+\end{exercise}
+%\solution{ Your solution here.}
+
+\newpage
+
+\begin{exercise}
+  Consider the following problem:
+
+  \begin{center}
+    \fbox{
+      \begin{minipage}[c]{.95\linewidth}
+        \textbf{SELECT-3RD}
+
+\medskip
+
+INSTANCE: An integer $n$, and a list $L=(n_1,n_2,\ldots,n_m)$ of
+integers, where no integer occurs twice in $L$ (i.e. $L$ represents a
+set).\\
+QUESTION: Is $n$ the third biggest element in $L$?
+       \end{minipage}
+    }
+  \end{center}
+
+
+  \medskip Provide a logarithmic space algorithm for
+  solving~\textbf{SELECT-3RD} (use pseudo-code notation). Argue why it
+  uses only logarithmic space.
+\end{exercise}
+\noindent \textbf{Hint.} Each element in $L$ can be addressed using a
+pointer. Each pointer requires only logarithmic space.
+
+
+
+%\solution{ Your solution here.}
+
+
+\begin{exercise}
+  \label{ex:turing}
+
+  Design a Turing machine that increments by one a positive value represented by a string of 0s and 1s.
+
+\end{exercise}
+
+
+%\solution{ Your solution here.}
+
+
+
+\end{document}
+
+
