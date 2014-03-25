@@ -198,7 +198,19 @@ QUESTION: Does there exist a subset $S'\subseteq S$, s.t.\ the sum of the elemen
 \end{exercise}
 
 
-%\solution{ Your solution here.}
+\solution{
+  As proof I provide a certificate relation R and discuss why it is polynomially balanced and polynomial-time decidable:\\
+
+  $R=\{((S,t),S') \ | \  S' \subseteq S \wedge \big(\sum_{a_i \in S'} a_i\big) = t \}$\\
+  \begin{itemize}
+    \item{
+        R is certificate relation by construction: (S,t) is a positive instance of \textbf{SUBSET SUM} $\leftrightarrow$
+        There is a subset of S, $S'$ for which if all the integers in the set are added provide a sum which is equal to t. $\leftrightarrow$ 
+      $((S,t),S')\in R$}
+    \item{R is polynomially balanced because $S'$ is a subset of S.}
+    \item{R is polynomial-time decidable because adding numbers in set $S'$ and then comparing the sum to d is in $\bigO(|S'|+1)$}.
+  \end{itemize}
+}
 
 
 \begin{exercise}
@@ -217,7 +229,40 @@ QUESTION: Can the set $P$ be partitioned into two subsets $P_1, P_2$ such that t
 
 
 
-%\solution{ Your solution here.}
+\solution{ 
+  To formally prove that \textbf{PARTITION} is $\NP$-complete we need to first show that it is in NP.
+  Therefore we need to provide a certificate relation R and discuss why it is polynomially balanced and polynomial-time decidable:\\
+  $R=\{(P,P_1)) \ | \  P_1 \subseteq P \wedge \big(\sum_{a_i \in P_1} a_i\big) = \big(\sum_{a_i \in P \setminus P_1} a_i\big) \}$\\
+  \begin{itemize}
+    \item{
+        R is certificate relation by construction: (P,$P_1$) is a positive instance of \textbf{PARTITION} $\leftrightarrow$
+        There is a subset of P, $P_1$ for which if you partion P with $P_1$ you get a second subset $P_2$. If the integers in both sets are added up (seperately) they are equal. $\leftrightarrow$ 
+      $((P,P_1)\in R$}
+    \item{R is polynomially balanced because $P_1$ is a subset of P.}
+    \item{R is polynomial-time decidable because adding $|R|$ integers and then comparing two numbers is in P}.
+  \end{itemize}
+ We proceed our proof by reducing \textbf{SUBSET SUM} to \textbf{PARTITION} in order to show hardness.
+ Let an arbitrary instance of \textbf{SUBSET SUM} be given by a Set S and an integer t.\\
+ Then we construct the following instance of \textbf{PARTITION}: \\
+ b = $\big(\sum_{a_i \in S} a_i \big) $\\
+ $P = S \cup b+t \cup 2b-t$ \\
+ To prove the correctness of the reduction, we must show that (S,t) has a subset $S'$ where the sum of the elements equal to t $\leftrightarrow$ 
+ the resulting instance P of \textbf{PARTITION} is positive.\\
+ $\rightarrow$\\
+ We need to show that under the assumption of a positive instance (S,t) of \textbf{SUBSET SUM} the resulting instance P of \textbf{PARTITION}is positive:\\
+ Assume (S,t) has a subset $S'$ where the sum of the elements equal to t. By our reduction  $P = S \cup b+t \cup 2b-t$ \\
+ Let $P_1$ = $S' \cup (2b-t)$ this implies that $P_2$ = $S \setminus S' \cup (b+t)$ by the definition of \textbf{PARTITION}. As t = $\big(\sum_{a_i \in S'} a_i \big) $ and $t+(2b-t)=2b$ the sum of the elements in 
+ $P_1$ is equal to 2b. The sum of the elements in $S \setminus S'$ is equal to $b-t$ and  $(b-t) +(b+t) = 2b$. Thus the sum of the elements in 
+ $P_1$ and $P_2$ are equal and we have a positive resulting instance P of \textbf{SUBSET SUM}.\\
+ $\leftarrow$\\
+ Suppose that P is a positive instance of \textbf{PARTITION}. Now we need to show, that (S,t) is a positive instance of \textbf{SUBSET SUM}.
+ Because of the reduction $P = S \cup b+t \cup 2b-t$ and we can assume that there exist two sets $P_1$ and $P_2$ which partition $P$.
+ The only way to partition P into two sets is to exactly split it into two sets where the sum of the elements add up to 2b, because the total sum of the elements in P is 4b.
+ The only way to do this is to take some elements out of S which when summed up equal to the value t and add the element $(2b-t)$. (The other set is formed by $S \setminus S' \cup (b+t)$).
+ Because we assumed that our set can be partioned we can be sure that there are elements of S which when summed up equal to the value t.
+ Let the elements of S which when summed up equal to the value t form the Set $S'$. This is the definition of a positive instance of \textbf{SUBSET SUM}.
+$\square$
+}
 \newpage
 
 \begin{exercise}
