@@ -159,26 +159,29 @@ String $\Pi'$ (String S) {
 }
 \end{lstlisting}
 It remains to show that the following equivalence holds:\\
-$\Pi$ halts on S $\Leftrightarrow$ $\Pi'$ returns S+S\\
+$\Pi$ halts on I $\Leftrightarrow$ $\Pi'$ returns I+I\\
 $\Rightarrow$\\
-Assume $\Pi$ halts on S. This means line three is reached and S+S is returned.\\
+Assume $\Pi$ halts on I. This means line three is reached and I+I is returned.\\
 $\Leftarrow$\\
-Assume $\Pi'$ returns S+S. This implies, that the program must have passed line two.
-This implies that $\Pi$ halts on S because it means running $\Pi$ on I.
+Assume $\Pi'$ returns I+I. This implies, that the program must have passed line two.
+This implies that $\Pi$ halts on I because it means running $\Pi$ on I and returning from it.
 $\square$
-
-
-
-
-
-
 
 \begin{exercise}
  Prove that \textbf{DOUBLE} is semi-decidable. To this end, provide a semi-decision procedure and justify your solution.
 \end{exercise}
 
 
-%\solution{ Your solution here.}
+\solution{
+We can write an interpreter program $\Pi_i$ such that:\\
+\begin{itemize}
+  \item{$\Pi_i$ takes as input a source code $\Pi$ and an Input I for $\Pi$}
+  \item{$\Pi_i$ parses $\Pi$ and simulates a run of $\Pi$ on I.}
+  \item{If the simulation of $\Pi$ on I reaches the end and $\Pi$ returns I+I, $\Pi_i$ returns true}
+  \item{If the simulation of $\Pi$ on I reaches the end and $\Pi$ doesn't return I+I, $\Pi_i$ returns false}
+  \item{If the simulation of $\Pi$ on I doesn't reach the end, then, clearly $\Pi_i$ cannot return any value }
+\end{itemize}
+}
 
 
 \begin{exercise}

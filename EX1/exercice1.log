@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.21)  25 MAR 2014 00:53
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.2.18)  25 MAR 2014 15:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,13 +322,18 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 156.
- [1
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--184
+
+ []
+
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 264.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 267.
  [3]
-Overfull \hbox (2.47302pt too wide) in paragraph at lines 346--347
+Overfull \hbox (2.47302pt too wide) in paragraph at lines 349--350
 []\OT1/cmr/m/it/10.95 Fomally prove that log-i-cal en-tail-ment in propo-si-tio
 nal logic is $\OML/cmm/m/it/10.95 co \OMS/cmsy/m/n/10.95 ^^@ []$\OT1/cmr/m/it/1
 0.95 -complete. 
@@ -337,7 +342,7 @@ nal logic is $\OML/cmm/m/it/10.95 co \OMS/cmsy/m/n/10.95 ^^@ []$\OT1/cmr/m/it/1
 [4] [5] (./exercice1.aux) ) 
 Here is how much of TeX's memory you used:
  5238 strings out of 495059
- 74966 string characters out of 3182029
+ 74966 string characters out of 3182030
  143844 words of memory out of 3000000
  8344 multiletter control sequences out of 15000+200000
  12474 words of font info for 49 fonts, out of 3000000 for 9000
@@ -360,7 +365,7 @@ sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on exercice1.pdf (5 pages, 199233 bytes).
+Output written on exercice1.pdf (5 pages, 199859 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  63 compressed objects within 1 object stream
