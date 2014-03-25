@@ -122,7 +122,6 @@ Submission deadline: 21.04.2014}
 
 \begin{document}
 
-
 \maketitle
 
 
@@ -451,8 +450,27 @@ pointer. Each pointer requires only logarithmic space.
 
 \end{exercise}
 
+\solution{
+Turing machine M for incrementing a value represented by a string of 0s and 1s. 
+M assumes that the lsb is left and the msb is right.
+M = (K,$\Sigma$, $\delta$, s) with $K=\{s, q\}$, $\Sigma=\{0,1,\blank, \ssym\}$ and a transition function $\delta$ as follows:\\
 
-%\solution{ Your solution here.}
+\begin{center}
+    \begin{tabular}{| l  l | l |}
+    \hline
+    $p \in K$ & $\sigma \in \Sigma$ & $\delta(p,\sigma)$\\ \hline
+    s         &       $ \ssym  $    &  $ (s,\ssym,\rightarrow) $               \\ \hline
+    s         &        0            &  $(\halt,1,\stay)$                 \\ \hline
+    s         &        1            &  $(s,1,\rightarrow)$                 \\ \hline
+    s         &       $ \blank $    &  $(q,1,\leftarrow)$                 \\ \hline
+    q         &        1            &  $(q,0,\leftarrow)$                 \\ \hline
+    q         &        $\ssym$      &  $(\halt,\ssym,\stay$)                 \\ \hline
+    \hline
+    \end{tabular}
+\end{center}
+
+}
+
 
 
 
