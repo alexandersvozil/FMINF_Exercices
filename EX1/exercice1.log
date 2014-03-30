@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.2.18)  25 MAR 2014 20:13
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.21)  30 MAR 2014 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -212,7 +212,11 @@ Package caption Info: listings package is loaded.
 )
 \c@theorem=\count109
 
-(./exercice1.aux)
+(./exercice1.aux
+
+LaTeX Warning: Label `haltingtodouble' multiply defined.
+
+)
 \openout1 = `exercice1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
@@ -340,38 +344,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 212--212
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 265--265
 
  []
 
 [2] [3]
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 311.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 328.
  [4]
-Overfull \hbox (2.47302pt too wide) in paragraph at lines 393--394
+Overfull \hbox (2.47302pt too wide) in paragraph at lines 410--411
 []\OT1/cmr/m/it/10.95 Fomally prove that log-i-cal en-tail-ment in propo-si-tio
 nal logic is $\OML/cmm/m/it/10.95 co \OMS/cmsy/m/n/10.95 ^^@ []$\OT1/cmr/m/it/1
 0.95 -complete. 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 472--472
+[5] [6]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 462--462
+[][][][][][][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 468.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 468.
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 520--520
 
  []
 
-[6] (./exercice1.aux)
+[8] (./exercice1.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5238 strings out of 495059
- 74966 string characters out of 3182030
- 143844 words of memory out of 3000000
- 8344 multiletter control sequences out of 15000+200000
+ 5255 strings out of 495059
+ 75254 string characters out of 3182029
+ 149883 words of memory out of 3000000
+ 8358 multiletter control sequences out of 15000+200000
  12474 words of font info for 49 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,8n,39p,757b,1115s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,39p,757b,1122s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/te
@@ -388,10 +404,10 @@ r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on exercice1.pdf (6 pages, 210361 bytes).
+Output written on exercice1.pdf (8 pages, 218248 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 99 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

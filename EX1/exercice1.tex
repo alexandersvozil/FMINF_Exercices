@@ -245,6 +245,7 @@ QUESTION: Can the set $P$ be partitioned into two subsets $P_1, P_2$ such that t
  Then we construct the following instance of \textbf{PARTITION}: \\
  b = $\big(\sum_{a_i \in S} a_i \big) $\\
  $P = S \cup b+t \cup 2b-t$ \\
+ The reduction can obviously be done in polynomial time, because adding two elements to a set is in P.
  To prove the correctness of the reduction, we must show that (S,t) has a subset $S'$ where the sum of the elements equal to t $\leftrightarrow$ 
  the resulting instance P of \textbf{PARTITION} is positive.\\
  $\rightarrow$\\
@@ -291,7 +292,23 @@ i.e. $\bigcup_{S \in C} S = X$.
 
 \end{exercise}
 
-%\solution{ Your solution here.}
+\solution{The reduction from \textbf{VERTEX COVER} to \textbf{SET COVER}:\\
+  Let the finite set $X$ of elements be E, the Set of Edges. Let $n$ be $|V|$, the number of vertices in G. For every vertice u $\in$ V let $S_u$ be a subset of $X$ containing all the adjacent edges of u. Let $m=k$.
+  This transformation is clearly done in polynomial time.
+  The proof for $\Rightarrow$ direction, i.e., if a \textbf{VERTEX COVER} instance is a yes instance then the created \textbf{SET COVER} is also a yes instance:
+  \begin {enumerate}
+  \item{Assume \textbf{VERTEX COVER} is a yes instance, i.e., there exists a vertex cover N of size $\leq$ k. That means N $\subseteq$ V, s.t. for all [i,j] $\in$ E, either $i \in N$ or $j \in N$ }
+  \item{We construct our solution for \textbf{SET COVER}: For every vertex u $\in$ N add the corresponding set $S_u$ to $C$.}
+  \item{By our assumption in (a), only k vertices are in N and thus by (b), we can only have k sets in $C$. Since we stated in our reduction that $m=k$, this constraint is fulfilled.}
+  \item{We now need to proof that every element in $X$ is in a subset $S_u$ which is in C.} 
+  \item{Therefore let $x \in X$ be arbitrary.}
+  \item{x by our reduction must be an edge $\in$ E}
+  \item{By our reduction, (a) and (b), every edge is in one of the subsets $S_u$ which is in C. We know there is a set cover N (a). Every vertice u $\in$ N has a corresponding set $S_u$ in which all
+    adjacent edges of u are in. Because for all [i,j] $\in$ E either $i \in N$ or $j \in N $ we conversly know that all vertices in N (and thus all subsets in C by (b) ) contain all edges adjacently.}
+  \item{Thus all elements in of $X$ are in a subset $S_u$ which is in C, and we have a yes instance of set cover.}  
+  \end {enumerate}
+}
+
 
 
 \begin{exercise}
@@ -439,8 +456,39 @@ QUESTION: Is $n$ the third biggest element in $L$?
 pointer. Each pointer requires only logarithmic space.
 
 
-
-%\solution{ Your solution here.}
+\solution{
+We have \textbf{SELECT-3RD} $\in$ L because we can traverse the list and use only five pointers, namely $first$, $second$, $third$, $tmp$ and $tmp2$ to store the respective
+position in the set. After traversing the list, $third$ is then compared with $n$.}
+\begin{lstlisting}[label=haltingtodouble,caption=CompareThird,mathescape, numbers=left, numberstyle=\tiny]
+Boolean $CompareThird$ (List l, Integer n) {
+  Element first;
+  Element second;
+  Element third;
+  for(Element e : List l){
+    if(first == null || first < e){
+       Element tmp = first;
+       Element tmp2 = second;
+       first = e;
+       second = tmp;
+       third = tmp2;
+       continue;
+    }
+    if(second == null || second < e){
+       Element tmp = second;
+       second = e;
+       third = tmp;
+       continue;
+    }
+    if(third == null || third < e){
+      third = e;
+      continue;
+    }
+  }
+  return third==n;
+}
+\end{lstlisting}
+The elements in $L$ are adressed with a pointer and because each pointer requires only logarithmic space and we only used pointers \textbf{SELECT-3RD} $\in$ L. 
+The input to this program is assumed to be stored in the read-only memory and thus its space is not counted to the algorithm.
 
 
 \begin{exercise}
