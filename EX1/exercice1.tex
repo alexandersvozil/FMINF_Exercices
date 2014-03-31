@@ -416,7 +416,7 @@ Fomally prove that logical entailment in propositional logic is $co-\NP$-complet
 INSTANCE: Propositional logic sentences $\alpha$ and $\beta$. 
 
 \noindent 
-QUESTION: Does the sentence $\alpha$ entails the sentence $\beta$  ($\alpha \models \beta$)? 
+QUESTION: Does the sentence $\alpha$ entail the sentence $\beta$  ($\alpha \models \beta$)? 
 
 \medskip
 
@@ -425,7 +425,64 @@ QUESTION: Does the sentence $\alpha$ entails the sentence $\beta$  ($\alpha \mod
   
   
 \end{exercise}
-%\solution{ Your solution here.}
+\solution{  
+  We proceed our proof that logical entailment in propositional logic is $co-\NP$-complete by reduction to \textbf{VALIDITY} but first we have to show that 
+  logical entailment is in NP.
+  Therefore we provide a reduction from \textbf{ENTAILMENT} to \textbf{VALIDITY} and since we have shown (on page 10 of fmi04.pdf) that \textbf{VALIDITY} is in co-NP, \textbf{ENTAILMENT} would be
+  in co-NP.\\
+  Recall validity:
+  \medskip
+  \noindent 
+  \textbf{VALIDITY: } \\
+  \noindent 
+  INSTANCE: Boolean formula $\varphi$. 
+
+  \noindent 
+  QUESTION: Is $\varphi$ valid (i.e., true in every assignment appropriate to $\varphi$)?
+  \medskip
+  \noindent 
+
+  \noindent 
+  Reduction from \textbf{ENTAILMENT} to \textbf{VALIDITY:}\\
+  Set $\varphi$ to $\alpha \rightarrow \beta$
+  Now we need to argue that every instance of \textbf{ENTAILMENT} is true iff the constructed instance of \textbf{VALIDITY} is true:\\
+
+  $\rightarrow$
+  \begin{enumerate}
+    \item{Assume we have a positive instance of \textbf{ENTAILMENT}, i.e., $\alpha \models \beta$}
+    \item{By the deduction we can write $\models \alpha \rightarrow \beta$}
+    \item{By (b) $\alpha \rightarrow \beta$ is true in every assignment}
+    \item{As $\varphi$ is $\alpha \rightarrow \beta$ and is by (c) true in every assignment the first direction is proved}
+    
+  \end{enumerate}
+  
+  $\leftarrow$
+  \begin{enumerate}
+    \item{Assume we have a positive instance of \textbf{VALIDITY}, i.e., $\alpha \rightarrow \beta$ is true under any assignment}
+    \item{By the deduction theorem and (a) we can write $\alpha \models \beta$ }
+    \item{The second direction is proved}
+  \end{enumerate}
+  \textbf{ENTAILMENT} has successfully been reduced to \textbf{VALIDITY} and is thus in co-NP. It remains to show the converse to proof not only membership but also hardness.
+  \noindent 
+  Reduction from Validity to Entailment:\\
+  Set $\beta$ = $\varphi$ and $\alpha$ to $\top$.
+  Now we need to argue that every instance of \textbf{VALIDITY} is true iff the constructed instance of \textbf{ENTAILMENT} is true:\\
+  $\rightarrow$\\
+  \begin{enumerate}
+    \item{Assume we have a positive instance of \textbf{VALIDITY}, i.e., $\varphi$ is valid in every assignment appropriate to $\varphi$}
+    \item{Our constructed instance of \textbf{ENTAILMENT} looks like this: $\top \models \varphi$}
+    \item{We now need to show in every assignment in which $\top$ is true, $\beta$ is also true.}
+    \item{(c) is easy to show, because $\beta$ is true in every assignment as assumed in (a)}
+    \item{therefore we have a positive instance of \textbf{ENTAILMENT}}
+  \end{enumerate}
+  $\leftarrow$\\
+  \begin{enumerate}
+    \item{Assume we hve a positive instance of \textbf{ENTAILMENT}, i.e., in every assignment in which $\top$ is true, $\beta$ is also true.}
+    \item{By our reduction $\beta$ = $\varphi$}
+    \item{By definition of $\top$, it is true in every assignment which by assumption (a) implies that $\beta$ and thus $\varphi$ is always true}
+    \item{By (c) we have a positive instance of \textbf{VALIDITY}}
+  \end{enumerate}
+}
 
 \newpage
 
